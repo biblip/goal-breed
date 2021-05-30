@@ -1,3 +1,5 @@
+//@ts-check
+
 import { useEffect, useState } from 'react';
 import { DataStore, Predicates } from '@aws-amplify/datastore';
 import { Task } from './models';
@@ -5,15 +7,24 @@ import { Button, Card, CardActions, CardContent, Table, TableBody, TableCell, Ta
 
 import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 
 Amplify.configure(awsconfig);
 
 function App() {
-    const [taskList, setTaskList] = useState([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [taskList, setTaskList] = useState([]);
 
+    useEffect(() => {
+        AssessLoggedInState();
+    }, []);
 
+    const AssessLoggedInState = () => {
+        Auth.currentAuthenticatedUser().then(() => {
+            setIsAuthenticated(true);
+        }).catch(() => {
+            setIsAuthenticated(false);
+        })
+    }
     
     /*
     Amplify.configure({
@@ -44,16 +55,26 @@ function App() {
         getTasks();
     }
 
-    function signIn() {
-
+    const signIn  = async () => {
+        try {
+            //const user = await Auth.signIn("user1@cuplease.com","mmmm3333");
+            await Auth.signIn("user1@cuplease.com","mmmm3333");
+            setIsAuthenticated(true);
+        } catch (error) {
+            console.log('Error signing in ', error);
+        }
     }
 
-    function signOut() {
-        
+    const signOut = async() => {
+        try {
+            await Auth.signOut();
+            setIsAuthenticated(false);
+        } catch (error) {
+            console.log('error signing out ', error);
+        }
     }
 
     useEffect(() => {
-        //createTask();
         getTasks();
     }, []);
 
@@ -62,9 +83,11 @@ function App() {
             <CardActions>
                 <Button variant="outlined" onClick={createTask}>New</Button>
                 <Button variant="outlined" onClick={deleteAll}>Delete All</Button>
-
-                <Button variant="outlined" onClick={signIn}>Sign In</Button>
-                <AmplifySignOut/>
+                {
+                    isAuthenticated ? <Button variant="outlined" onClick={signOut}>Sign Out</Button>
+                    :
+                    <Button variant="outlined" onClick={signIn}>Sign In</Button>
+                }                
             </CardActions>
             <CardContent>
                 <TableContainer>
@@ -96,4 +119,4 @@ function App() {
     );
 }
 
-export default withAuthenticator(App);
+export default App;

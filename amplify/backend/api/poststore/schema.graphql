@@ -2,9 +2,9 @@ type Task
     @model
     @auth(
         rules: [
-            { allow: owner, operations: [create, update, delete, read] }
-            { allow: private, operations: [read] }
             { allow: public, provider: iam, operations: [read] }
+            { allow: private, operations: [read] }
+            { allow: owner }
         ]
     ) {
     id: ID!
@@ -16,8 +16,8 @@ type PrivateNote
     @model
     @auth(
         rules: [
-            { allow: owner, operations: [create, update, delete, read] }
             { allow: public, provider: iam, operations: [read] }
+            { allow: owner }
         ]
     ) {
     id: ID!
