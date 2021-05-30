@@ -1,14 +1,17 @@
 //@ts-check
 
 import { useEffect, useState } from 'react';
-import { DataStore, Predicates } from '@aws-amplify/datastore';
+import { DataStore, Predicates } from "@aws-amplify/datastore";
 import { Task } from './models';
 import { Button, Card, CardActions, CardContent, Table, TableBody, TableCell, TableContainer, TableRow } from '@material-ui/core';
 
-import Amplify, { Auth } from 'aws-amplify';
-import awsconfig from './aws-exports';
+//import Amplify, { Auth } from 'aws-amplify';
+import awsConfig from './aws-exports';
+import Amplify from '@aws-amplify/core';
+import Auth from '@aws-amplify/auth';
 
-Amplify.configure(awsconfig);
+//Amplify.configure({ config: { awsConfig } });
+Amplify.configure(awsConfig);
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

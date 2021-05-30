@@ -68,6 +68,7 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
+                                "ownerField": "owner",
                                 "provider": "iam",
                                 "operations": [
                                     "read"
@@ -75,6 +76,7 @@ export const schema = {
                             },
                             {
                                 "allow": "private",
+                                "ownerField": "owner",
                                 "operations": [
                                     "read"
                                 ]
@@ -163,6 +165,7 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
+                                "ownerField": "owner",
                                 "provider": "iam",
                                 "operations": [
                                     "read"
