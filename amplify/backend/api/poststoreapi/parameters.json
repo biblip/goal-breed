@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "poststoreapi",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authpoststorebc23f991bc23f991",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
