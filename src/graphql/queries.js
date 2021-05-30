@@ -8,12 +8,12 @@ export const getTask = /* GraphQL */ `
       title
       description
       status
+      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -29,12 +29,12 @@ export const listTasks = /* GraphQL */ `
         title
         description
         status
+        owner
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        owner
       }
       nextToken
       startedAt
@@ -59,12 +59,12 @@ export const syncTasks = /* GraphQL */ `
         title
         description
         status
+        owner
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        owner
       }
       nextToken
       startedAt
@@ -76,6 +76,7 @@ export const getPrivateNote = /* GraphQL */ `
     getPrivateNote(id: $id) {
       id
       content
+      owner
       _version
       _deleted
       _lastChangedAt
@@ -86,14 +87,13 @@ export const getPrivateNote = /* GraphQL */ `
         title
         description
         status
+        owner
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        owner
       }
-      owner
     }
   }
 `;
@@ -107,6 +107,7 @@ export const listPrivateNotes = /* GraphQL */ `
       items {
         id
         content
+        owner
         _version
         _deleted
         _lastChangedAt
@@ -117,14 +118,13 @@ export const listPrivateNotes = /* GraphQL */ `
           title
           description
           status
+          owner
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
-          owner
         }
-        owner
       }
       nextToken
       startedAt
@@ -147,6 +147,7 @@ export const syncPrivateNotes = /* GraphQL */ `
       items {
         id
         content
+        owner
         _version
         _deleted
         _lastChangedAt
@@ -157,14 +158,13 @@ export const syncPrivateNotes = /* GraphQL */ `
           title
           description
           status
+          owner
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
-          owner
         }
-        owner
       }
       nextToken
       startedAt

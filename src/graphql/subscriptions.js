@@ -8,12 +8,12 @@ export const onCreateTask = /* GraphQL */ `
       title
       description
       status
+      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -24,12 +24,12 @@ export const onUpdateTask = /* GraphQL */ `
       title
       description
       status
+      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -40,12 +40,12 @@ export const onDeleteTask = /* GraphQL */ `
       title
       description
       status
+      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -54,6 +54,7 @@ export const onCreatePrivateNote = /* GraphQL */ `
     onCreatePrivateNote(owner: $owner) {
       id
       content
+      owner
       _version
       _deleted
       _lastChangedAt
@@ -64,14 +65,13 @@ export const onCreatePrivateNote = /* GraphQL */ `
         title
         description
         status
+        owner
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        owner
       }
-      owner
     }
   }
 `;
@@ -80,6 +80,7 @@ export const onUpdatePrivateNote = /* GraphQL */ `
     onUpdatePrivateNote(owner: $owner) {
       id
       content
+      owner
       _version
       _deleted
       _lastChangedAt
@@ -90,14 +91,13 @@ export const onUpdatePrivateNote = /* GraphQL */ `
         title
         description
         status
+        owner
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        owner
       }
-      owner
     }
   }
 `;
@@ -106,6 +106,7 @@ export const onDeletePrivateNote = /* GraphQL */ `
     onDeletePrivateNote(owner: $owner) {
       id
       content
+      owner
       _version
       _deleted
       _lastChangedAt
@@ -116,14 +117,13 @@ export const onDeletePrivateNote = /* GraphQL */ `
         title
         description
         status
+        owner
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        owner
       }
-      owner
     }
   }
 `;
