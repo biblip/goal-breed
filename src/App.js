@@ -43,8 +43,8 @@ function App() {
             <CardContent>
                 <TableContainer>
                     {
-                        taskList.map( item => 
-                            <TableRow>
+                        taskList.map( (item, index) => 
+                            <TableRow key={index}>
                                 <TableCell>
                                     {item.id}
                                 </TableCell>
