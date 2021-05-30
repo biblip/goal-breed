@@ -68,10 +68,10 @@ function App() {
         getTasks();
     }
 
-    const signIn  = async () => {
+    const signIn  = async (user, password) => {
         try {
             //const user = await Auth.signIn("user1@cuplease.com","mmmm3333");
-            await Auth.signIn("user1@cuplease.com","mmmm3333");
+            await Auth.signIn(user, password);
             setIsAuthenticated(true);
         } catch (error) {
             console.log('Error signing in ', error);
@@ -95,7 +95,11 @@ function App() {
                 {
                     isAuthenticated ? <Button variant="outlined" onClick={signOut}>Sign Out</Button>
                     :
-                    <Button variant="outlined" onClick={signIn}>Sign In</Button>
+                    <div>
+                        <Button variant="outlined" onClick={() => signIn("user1@cuplease.com","mmmm3333")}>Sign In user1</Button>
+                        <Button variant="outlined" onClick={() => signIn("user2@cuplease.com","mmmm3333")}>Sign In user2</Button>
+                        <Button variant="outlined" onClick={() => signIn("user3@cuplease.com","mmmm3333")}>Sign In user3</Button>
+                    </div>
                 }                
             </CardActions>
             <CardContent>
