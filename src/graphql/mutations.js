@@ -11,12 +11,12 @@ export const createTask = /* GraphQL */ `
       title
       description
       status
-      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -30,12 +30,12 @@ export const updateTask = /* GraphQL */ `
       title
       description
       status
-      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -49,99 +49,12 @@ export const deleteTask = /* GraphQL */ `
       title
       description
       status
-      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createPrivateNote = /* GraphQL */ `
-  mutation CreatePrivateNote(
-    $input: CreatePrivateNoteInput!
-    $condition: ModelPrivateNoteConditionInput
-  ) {
-    createPrivateNote(input: $input, condition: $condition) {
-      id
-      content
       owner
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      task {
-        id
-        title
-        description
-        status
-        owner
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const updatePrivateNote = /* GraphQL */ `
-  mutation UpdatePrivateNote(
-    $input: UpdatePrivateNoteInput!
-    $condition: ModelPrivateNoteConditionInput
-  ) {
-    updatePrivateNote(input: $input, condition: $condition) {
-      id
-      content
-      owner
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      task {
-        id
-        title
-        description
-        status
-        owner
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const deletePrivateNote = /* GraphQL */ `
-  mutation DeletePrivateNote(
-    $input: DeletePrivateNoteInput!
-    $condition: ModelPrivateNoteConditionInput
-  ) {
-    deletePrivateNote(input: $input, condition: $condition) {
-      id
-      content
-      owner
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      task {
-        id
-        title
-        description
-        status
-        owner
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
     }
   }
 `;

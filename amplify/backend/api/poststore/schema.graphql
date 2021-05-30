@@ -2,27 +2,13 @@ type Task
     @model
     @auth(
         rules: [
-            { allow: public, ownerField: "owner", provider: iam, operations: [read] }
-            { allow: private, ownerField: "owner", operations: [read] }
-            { allow: owner, ownerField: "owner", operations: [create, update, delete, read] }
+            { allow: public, provider: iam, operations: [read] }
+            { allow: private, operations: [read] }
+            { allow: owner, operations: [create, update, delete, read] }
         ]
     ) {
     id: ID!
     title: String!
     description: String
     status: String
-    owner: String
-}
-type PrivateNote
-    @model
-    @auth(
-        rules: [
-            { allow: public, ownerField: "owner", provider: iam, operations: [read] }
-            { allow: owner, ownerField: "owner", operations: [create, update, delete, read] }
-        ]
-    ) {
-    id: ID!
-    content: String!
-    task: Task @connection
-    owner: String
 }

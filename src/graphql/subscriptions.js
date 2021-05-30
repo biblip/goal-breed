@@ -8,12 +8,12 @@ export const onCreateTask = /* GraphQL */ `
       title
       description
       status
-      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -24,12 +24,12 @@ export const onUpdateTask = /* GraphQL */ `
       title
       description
       status
-      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -40,90 +40,12 @@ export const onDeleteTask = /* GraphQL */ `
       title
       description
       status
-      owner
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onCreatePrivateNote = /* GraphQL */ `
-  subscription OnCreatePrivateNote($owner: String) {
-    onCreatePrivateNote(owner: $owner) {
-      id
-      content
       owner
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      task {
-        id
-        title
-        description
-        status
-        owner
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const onUpdatePrivateNote = /* GraphQL */ `
-  subscription OnUpdatePrivateNote($owner: String) {
-    onUpdatePrivateNote(owner: $owner) {
-      id
-      content
-      owner
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      task {
-        id
-        title
-        description
-        status
-        owner
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const onDeletePrivateNote = /* GraphQL */ `
-  subscription OnDeletePrivateNote($owner: String) {
-    onDeletePrivateNote(owner: $owner) {
-      id
-      content
-      owner
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      task {
-        id
-        title
-        description
-        status
-        owner
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
