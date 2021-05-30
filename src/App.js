@@ -12,10 +12,13 @@ function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
+    Amplify.configure(awsconfig);
+    /*
     Amplify.configure({
         ...awsconfig,
-        //aws_appsync_authenticationType: isAuthenticated ? 'AMAZON_COGNITO_USER_POOLS' : 'AWS_IAM',
+        aws_appsync_authenticationType: isAuthenticated ? 'AMAZON_COGNITO_USER_POOLS' : 'AWS_IAM',
     });
+    */
 
     async function getTasks() {
         const models = await DataStore.query(Task);
