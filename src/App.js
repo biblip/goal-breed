@@ -7,12 +7,14 @@ import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 
+Amplify.configure(awsconfig);
+
 function App() {
     const [taskList, setTaskList] = useState([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 
-    Amplify.configure(awsconfig);
+    
     /*
     Amplify.configure({
         ...awsconfig,
@@ -61,8 +63,8 @@ function App() {
                 <Button variant="outlined" onClick={createTask}>New</Button>
                 <Button variant="outlined" onClick={deleteAll}>Delete All</Button>
 
-                <Button variant="outlined" onClick={signIn}>Delete All</Button>
-                <Button variant="outlined" onClick={signOut}>Delete All</Button>
+                <Button variant="outlined" onClick={signIn}>Sign In</Button>
+                <AmplifySignOut/>
             </CardActions>
             <CardContent>
                 <TableContainer>
