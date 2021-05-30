@@ -1,12 +1,18 @@
 {
   "auth": {
+    "poststore": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    },
     "userPoolGroups": {
       "service": "Cognito-UserPool-Groups",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "poststorebc23f991bc23f991",
+          "resourceName": "poststore",
           "attributes": [
             "UserPoolId",
             "AppClientIDWeb",
@@ -15,16 +21,10 @@
           ]
         }
       ]
-    },
-    "poststorebc23f991bc23f991": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
     }
   },
   "api": {
-    "poststoreapi": {
+    "poststore": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -32,7 +32,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authpoststorebc23f991_userpool_bc23f991"
+              "userPoolId": "authpoststore"
             }
           },
           "additionalAuthenticationProviders": [

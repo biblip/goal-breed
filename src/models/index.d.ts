@@ -4,13 +4,23 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-export declare class Book {
+export declare class Task {
   readonly id: string;
   readonly title: string;
   readonly description?: string;
-  readonly price?: number;
+  readonly status?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  constructor(init: ModelInit<Book>);
-  static copyOf(source: Book, mutator: (draft: MutableModel<Book>) => MutableModel<Book> | void): Book;
+  constructor(init: ModelInit<Task>);
+  static copyOf(source: Task, mutator: (draft: MutableModel<Task>) => MutableModel<Task> | void): Task;
+}
+
+export declare class PrivateNote {
+  readonly id: string;
+  readonly content: string;
+  readonly task?: Task;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<PrivateNote>);
+  static copyOf(source: PrivateNote, mutator: (draft: MutableModel<PrivateNote>) => MutableModel<PrivateNote> | void): PrivateNote;
 }

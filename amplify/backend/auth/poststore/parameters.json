@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "poststorebc23f991_identitypool_bc23f991",
+    "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "poststbc23f991",
-    "userPoolName": "poststorebc23f991_userpool_bc23f991",
+    "resourceNameTruncated": "poststc10719f5",
+    "userPoolName": "poststore",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -12,9 +12,9 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code for Social100 is: {####}",
-    "defaultPasswordPolicy": false,
+    "emailVerificationSubject": "Your secure code",
+    "emailVerificationMessage": "Your secure code for Social100: {####}",
+    "defaultPasswordPolicy": true,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
@@ -22,16 +22,12 @@
     ],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [
-        "email"
-    ],
-    "userpoolClientReadAttributes": [
-        "email"
-    ],
-    "userpoolClientLambdaRole": "poststbc23f991_userpoolclient_lambda_role",
+    "userpoolClientWriteAttributes": [],
+    "userpoolClientReadAttributes": [],
+    "userpoolClientLambdaRole": "poststc10719f5_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "bc23f991",
-    "resourceName": "poststorebc23f991bc23f991",
+    "sharedId": "c10719f5",
+    "resourceName": "poststore",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -45,24 +41,25 @@
             "Arn"
         ]
     },
-    "useDefault": "manual",
-    "thirdPartyAuth": false,
+    "serviceName": "Cognito",
     "usernameAttributes": [
         "email"
     ],
+    "useDefault": "manual",
     "userPoolGroups": true,
-    "adminQueries": false,
+    "userPoolGroupList": [
+        "poststore"
+    ],
+    "adminQueries": true,
+    "thirdPartyAuth": false,
+    "authProviders": [],
+    "usernameCaseSensitive": false,
+    "dependsOn": [],
     "triggers": "{}",
     "hostedUI": false,
-    "userPoolGroupList": [
-        "admin"
-    ],
-    "serviceName": "Cognito",
-    "usernameCaseSensitive": false,
     "parentStack": {
         "Ref": "AWS::StackId"
     },
     "breakCircularDependency": true,
-    "permissions": [],
-    "dependsOn": []
+    "permissions": []
 }

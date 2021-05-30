@@ -1,23 +1,23 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Parameters": {
-        "authpoststorebc23f991bc23f991UserPoolId": {
+        "authpoststoreUserPoolId": {
             "Type": "String",
-            "Default": "authpoststorebc23f991bc23f991UserPoolId"
+            "Default": "authpoststoreUserPoolId"
         },
         
-        "authpoststorebc23f991bc23f991IdentityPoolId": {
+        "authpoststoreIdentityPoolId": {
             "Type": "String",
-            "Default": "authpoststorebc23f991bc23f991IdentityPoolId"
+            "Default": "authpoststoreIdentityPoolId"
         },
         
-        "authpoststorebc23f991bc23f991AppClientID": {
+        "authpoststoreAppClientID": {
             "Type": "String",
-            "Default": "authpoststorebc23f991bc23f991AppClientID"
+            "Default": "authpoststoreAppClientID"
         },
-        "authpoststorebc23f991bc23f991AppClientIDWeb": {
+        "authpoststoreAppClientIDWeb": {
             "Type": "String",
-            "Default": "authpoststorebc23f991bc23f991AppClientIDWeb"
+            "Default": "authpoststoreAppClientIDWeb"
         },
         "AuthRoleArn": {
             "Type": "String"
@@ -41,26 +41,26 @@
     },
     "Resources": {
     
-        "adminGroup": {
+        "poststoreGroup": {
           "Type" : "AWS::Cognito::UserPoolGroup",
           "Properties" : {
-              "GroupName" : "admin",
+              "GroupName" : "poststore",
               "Precedence" : 1,
               
               "RoleArn" : {
                 "Fn::GetAtt": [
-                    "adminGroupRole",
+                    "poststoreGroupRole",
                     "Arn"
                 ]
               },
               
               "UserPoolId" : {
-                "Ref": "authpoststorebc23f991bc23f991UserPoolId"
+                "Ref": "authpoststoreUserPoolId"
               }
             }
         },
         
-        "adminGroupRole": {
+        "poststoreGroupRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
                 "RoleName":{
@@ -68,9 +68,9 @@
                         "",
                         [
                           {
-                            "Ref": "authpoststorebc23f991bc23f991UserPoolId"
+                            "Ref": "authpoststoreUserPoolId"
                           },
-                          "-adminGroupRole"
+                          "-poststoreGroupRole"
                         ]
                     ]
                 },
@@ -85,7 +85,7 @@
                             },
                             "Action": "sts:AssumeRoleWithWebIdentity",
                             "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authpoststorebc23f991bc23f991IdentityPoolId"}},
+                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authpoststoreIdentityPoolId"}},
                               "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
                             }
                         }
@@ -111,7 +111,7 @@
                                 "",
                                 [
 
-                                  "poststorebc23f991bc23f991",
+                                  "poststore",
                                   "-ExecutionRole-",
                                   {
                                     "Ref": "env"
@@ -272,16 +272,16 @@
                     "Ref": "UnauthRoleArn"
                 },
                 "identityPoolId": {
-                    "Ref": "authpoststorebc23f991bc23f991IdentityPoolId"
+                    "Ref": "authpoststoreIdentityPoolId"
                 },
                 "userPoolId": {
-                    "Ref": "authpoststorebc23f991bc23f991UserPoolId"
+                    "Ref": "authpoststoreUserPoolId"
                 },
                 "appClientIDWeb": {
-                    "Ref": "authpoststorebc23f991bc23f991AppClientIDWeb"
+                    "Ref": "authpoststoreAppClientIDWeb"
                 },
                 "appClientID": {
-                    "Ref": "authpoststorebc23f991bc23f991AppClientID"
+                    "Ref": "authpoststoreAppClientID"
                 },
                 "region": {
                     "Ref": "AWS::Region"
@@ -297,10 +297,10 @@
     
     "Outputs": {
       
-        "adminGroupRole": {
+        "poststoreGroupRole": {
             "Value": {
                 "Fn::GetAtt": [
-                    "adminGroupRole",
+                    "poststoreGroupRole",
                     "Arn"
                 ]
             }
