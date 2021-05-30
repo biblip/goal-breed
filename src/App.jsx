@@ -1,17 +1,21 @@
 //@ts-check
 
 import { useEffect, useState } from 'react';
-import { DataStore, Predicates } from "@aws-amplify/datastore";
+import { AuthModeStrategyType, DataStore, Predicates } from "@aws-amplify/datastore";
 import { Task } from './models';
-import { Button, Card, CardActions, CardContent, Table, TableBody, TableCell, TableContainer, TableRow } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 //import Amplify, { Auth } from 'aws-amplify';
 import awsConfig from './aws-exports';
 import Amplify from '@aws-amplify/core';
 import Auth from '@aws-amplify/auth';
 
-//Amplify.configure({ config: { awsConfig } });
-Amplify.configure(awsConfig);
+Amplify.configure({
+    ...awsConfig,
+    DataStore: {
+        authModeStrategyType: AuthModeStrategyType.MULTI_AUTH
+    }
+});
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,6 +23,12 @@ function App() {
 
     useEffect(() => {
         AssessLoggedInState();
+        const subscription = DataStore.observe(Task).subscribe((msg) => {
+            getTasks();
+        });
+        getTasks();        
+      
+        return () => subscription.unsubscribe();
     }, []);
 
     const AssessLoggedInState = () => {
@@ -54,7 +64,7 @@ function App() {
     }
 
     async function deleteAll(e) {
-        await DataStore.delete(Task, Predicates.ALL)
+        await DataStore.delete(Task, Predicates.ALL);
         getTasks();
     }
 
@@ -77,10 +87,6 @@ function App() {
         }
     }
 
-    useEffect(() => {
-        getTasks();
-    }, []);
-
     return (
         <Card>
             <CardActions>
@@ -95,10 +101,32 @@ function App() {
             <CardContent>
                 <TableContainer>
                     <Table>
+                        <TableHead>
+                            <TableRow>
+                                        <TableCell>
+                                            owner
+                                        </TableCell>
+                                        <TableCell>
+                                            id
+                                        </TableCell>
+                                        <TableCell>
+                                            title
+                                        </TableCell>
+                                        <TableCell>
+                                            description
+                                        </TableCell>
+                                        <TableCell>
+                                            status
+                                        </TableCell>
+                                    </TableRow>
+                            </TableHead>
                         <TableBody>
                         {
                             taskList.map( (item, index) => 
                                 <TableRow key={index}>
+                                    <TableCell>
+                                        {item.owner}
+                                    </TableCell>
                                     <TableCell>
                                         {item.id}
                                     </TableCell>
