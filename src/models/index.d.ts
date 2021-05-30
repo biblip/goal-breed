@@ -9,6 +9,7 @@ export declare class Task {
   readonly title: string;
   readonly description?: string;
   readonly status?: string;
+  readonly owner?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Task>);
@@ -19,6 +20,7 @@ export declare class PrivateNote {
   readonly id: string;
   readonly content: string;
   readonly task?: Task;
+  readonly owner?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<PrivateNote>);

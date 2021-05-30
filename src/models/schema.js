@@ -31,6 +31,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -76,13 +83,13 @@ export const schema = {
                                 "provider": "userPools",
                                 "ownerField": "owner",
                                 "allow": "owner",
-                                "identityClaim": "cognito:username",
                                 "operations": [
                                     "create",
                                     "update",
                                     "delete",
                                     "read"
-                                ]
+                                ],
+                                "identityClaim": "cognito:username"
                             }
                         ]
                     }
@@ -118,6 +125,13 @@ export const schema = {
                         "connectionType": "BELONGS_TO",
                         "targetName": "privateNoteTaskId"
                     }
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -158,13 +172,13 @@ export const schema = {
                                 "provider": "userPools",
                                 "ownerField": "owner",
                                 "allow": "owner",
-                                "identityClaim": "cognito:username",
                                 "operations": [
                                     "create",
                                     "update",
                                     "delete",
                                     "read"
-                                ]
+                                ],
+                                "identityClaim": "cognito:username"
                             }
                         ]
                     }
@@ -174,5 +188,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "4b081ad1b14d781cf3331922be2d78de"
+    "version": "1a4a0373eac1ecad84ebfdc56fd99467"
 };
