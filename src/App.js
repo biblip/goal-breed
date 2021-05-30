@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react';
 import { DataStore, Predicates } from '@aws-amplify/datastore';
 import { Task } from './models';
-import { Button, Card, CardActionArea, CardActions, CardContent, TableCell, TableContainer, TableRow } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Table, TableBody, TableCell, TableContainer, TableRow } from '@material-ui/core';
 
+import Amplify, { Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 
 function App() {
     const [taskList, setTaskList] = useState([]);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+
+    Amplify.configure({
+        ...awsconfig,
+        //aws_appsync_authenticationType: isAuthenticated ? 'AMAZON_COGNITO_USER_POOLS' : 'AWS_IAM',
+    });
 
     async function getTasks() {
         const models = await DataStore.query(Task);
@@ -29,6 +39,14 @@ function App() {
         getTasks();
     }
 
+    function signIn() {
+
+    }
+
+    function signOut() {
+        
+    }
+
     useEffect(() => {
         //createTask();
         getTasks();
@@ -39,31 +57,38 @@ function App() {
             <CardActions>
                 <Button variant="outlined" onClick={createTask}>New</Button>
                 <Button variant="outlined" onClick={deleteAll}>Delete All</Button>
+
+                <Button variant="outlined" onClick={signIn}>Delete All</Button>
+                <Button variant="outlined" onClick={signOut}>Delete All</Button>
             </CardActions>
             <CardContent>
                 <TableContainer>
-                    {
-                        taskList.map( (item, index) => 
-                            <TableRow key={index}>
-                                <TableCell>
-                                    {item.id}
-                                </TableCell>
-                                <TableCell>
-                                    {item.title}
-                                </TableCell>
-                                <TableCell>
-                                    {item.description}
-                                </TableCell>
-                                <TableCell>
-                                    {item.status}
-                                </TableCell>
-                            </TableRow>
-                        )
-                    }
+                    <Table>
+                        <TableBody>
+                        {
+                            taskList.map( (item, index) => 
+                                <TableRow key={index}>
+                                    <TableCell>
+                                        {item.id}
+                                    </TableCell>
+                                    <TableCell>
+                                        {item.title}
+                                    </TableCell>
+                                    <TableCell>
+                                        {item.description}
+                                    </TableCell>
+                                    <TableCell>
+                                        {item.status}
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        }
+                        </TableBody>
+                    </Table>
                 </TableContainer>
             </CardContent>
         </Card>
     );
 }
 
-export default App;
+export default withAuthenticator(App);

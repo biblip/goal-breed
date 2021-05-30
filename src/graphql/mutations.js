@@ -16,6 +16,7 @@ export const createTask = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -34,6 +35,7 @@ export const updateTask = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -52,6 +54,7 @@ export const deleteTask = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -78,6 +81,7 @@ export const createPrivateNote = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       owner
     }
@@ -106,6 +110,7 @@ export const updatePrivateNote = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       owner
     }
@@ -134,6 +139,7 @@ export const deletePrivateNote = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       owner
     }

@@ -1,19 +1,26 @@
 type Task
-  @model
-  @auth(
-    rules: [
-      { allow: groups, groups: ["Managers"], queries: null, mutations: [create, update, delete] }
-      { allow: groups, groups: ["Employees"], queries: [get, list], mutations: null }
-      { allow: public, provider: iam, queries: [get, list], mutations: null }
-    ]
-  ) {
-  id: ID!
-  title: String!
-  description: String
-  status: String
+    @model
+    @auth(
+        rules: [
+            { allow: owner, operations: [create, update, delete, read] }
+            { allow: private, operations: [read] }
+            { allow: public, provider: iam, operations: [read] }
+        ]
+    ) {
+    id: ID!
+    title: String!
+    description: String
+    status: String
 }
-type PrivateNote @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
-  content: String!
-  task: Task @connection
+type PrivateNote
+    @model
+    @auth(
+        rules: [
+            { allow: owner, operations: [create, update, delete, read] }
+            { allow: public, provider: iam, operations: [read] }
+        ]
+    ) {
+    id: ID!
+    content: String!
+    task: Task @connection
 }

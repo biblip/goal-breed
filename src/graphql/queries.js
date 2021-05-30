@@ -13,6 +13,7 @@ export const getTask = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -33,6 +34,7 @@ export const listTasks = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -62,6 +64,7 @@ export const syncTasks = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -88,6 +91,7 @@ export const getPrivateNote = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       owner
     }
@@ -118,6 +122,7 @@ export const listPrivateNotes = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         owner
       }
@@ -157,6 +162,7 @@ export const syncPrivateNotes = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         owner
       }
