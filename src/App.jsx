@@ -5,7 +5,6 @@ import { AuthModeStrategyType, DataStore, Predicates } from "@aws-amplify/datast
 import { Task } from './models';
 import { Button, Card, CardActions, CardContent, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
-//import Amplify, { Auth } from 'aws-amplify';
 import awsConfig from './aws-exports';
 import Amplify from '@aws-amplify/core';
 import Auth from '@aws-amplify/auth';
